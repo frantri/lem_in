@@ -12,7 +12,7 @@ static void	print_rooms(t_room *room)
 
 static void	print_room(t_room *room)
 {
-	ft_printf("ROOM: %s (%3d,%3d): ", room->name, room->c_x, room->c_y);
+	ft_printf("ROOM: %s (%-3d,%-3d): ", room->name, room->c_x, room->c_y);
 	print_rooms(room->neighbours);
 	ft_printf("\n");
 }
