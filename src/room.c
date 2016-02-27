@@ -11,49 +11,36 @@ t_room	*new_room(char *name, int x, int y)
 	res->c_x = x;
 	res->c_y = y;
 	res->name = ft_strdup(name);
-	res->next = NULL;
 	res->ant = 0;
-	res->neighbours = NULL;
+	ft_list_init(&res->neighbours, NULL);
+	res->weight = -1;
 	return (res);
 }
 
 void	add_neighbour(t_room *room, t_room *ngh)
 {
-	t_room	*it;
-
-	it = room->neighbours;
-	if (!it)
-	{
-		room->neighbours = new_room(ft_strdup(ngh->name), 0, 0);
-		return ;
-	}
-	while (it->next)
-	{
-		if (it == ngh)
-			return ;
-		it = it->next;
-	}
-	if (it != ngh)
-		it->next = new_room(ngh->name, 0, 0);
+	ft_list_add_back(&room->neighbours, ngh, sizeof(t_room));
 }
 
-t_room	*get_room(t_room *room_list, char *name)
+int		room_cmp(void *d2, size_t s, void *d, size_t s2)
 {
-	t_room *it;
-
-	it = room_list;
-	while (it && ft_strcmp(it->name, name) != 0)
-		it = it->next;
-	return (it);
+	(void)s;
+	(void)s2;
+	return (ft_strcmp(((t_room *)d)->name, (char *)d2));
 }
 
-int		link_neighbour(t_room *room_list, char *r, char *n)
+t_room	*get_room(t_map *map, char *name)
+{
+	return (ft_list_get(&map->rooms, name, 0, &room_cmp));
+}
+
+int		link_neighbour(t_map *map, char *r, char *n)
 {
 	t_room	*r_room;
 	t_room	*n_room;
 
-	r_room = get_room(room_list, r);
-	n_room = get_room(room_list, n);
+	r_room = get_room(map, r);
+	n_room = get_room(map, n);
 	if (!r_room || !n_room || ft_strequ(r, n))
 		return (-1);
 	add_neighbour(r_room, n_room);

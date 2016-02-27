@@ -1,26 +1,25 @@
 #include <lem_in.h>
 #include <ft_printf.h>
 
-static void	print_rooms(t_room *room)
+static void	print_room_name(void *room, size_t s)
 {
-	while (room)
-	{
-		ft_printf("%s ", room->name);
-		room = room->next;
-	}
+	(void)s;
+	ft_printf("%s ", ((t_room *)room)->name);
 }
 
-static void	print_room(t_room *room)
+static void	print_room(void *d, size_t s)
 {
-	ft_printf("ROOM: %s (%-3d,%-3d): ", room->name, room->c_x, room->c_y);
-	print_rooms(room->neighbours);
+	t_room		*room;
+
+	room = (t_room *)d;
+	(void)s;
+	ft_printf("ROOM: %s {%d}, (%-3d,%-3d): ", room->name,room->weight, room->c_x, room->c_y);
+	ft_list_iter(&room->neighbours, print_room_name);
 	ft_printf("\n");
 }
 
 void	print_map(t_map *map)
 {
-	t_room *it;
-
 	ft_printf("ANTS: %d\n", map->ants);
 	if (map->start)
 		ft_printf("START ROOM: %s\n", map->start->name);
@@ -30,12 +29,7 @@ void	print_map(t_map *map)
 		ft_printf("END ROOM: %s\n", map->end->name);
 	else
 		ft_printf("NO END ROOM\n");
-	it = map->rooms;
-	while (it)
-	{
-		print_room(it);
-		it = it->next;
-	}
+	ft_list_iter(&map->rooms, &print_room);
 }
 
 void	reprint_map(t_map *map, t_line *l)

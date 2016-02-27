@@ -2,18 +2,21 @@
 #include <ft_printf.h>
 #include <libft.h>
 
+#include <stdio.h>
 t_parsing_msg	check_dbl(t_map *map, t_room *newroom)
 {
-	t_room	*it;
+	t_room		*room;
+	size_t		i;
 
-	it = map->rooms;
-	while (it)
+	i = 0;
+	while (i < map->rooms.size)
 	{
-		if (ft_strcmp(it->name, newroom->name) == 0)
+		room = (t_room *)ft_list_get_at(&map->rooms, i);
+		if (ft_strcmp(room->name, newroom->name) == 0)
 			return (SAME_NAME);
-		else if (newroom->c_x == it->c_x && newroom->c_y == it->c_y)
+		else if (newroom->c_x == room->c_x && newroom->c_y == room->c_y)
 			return (SAME_COORDS);
-		it = it->next;
+		++i;
 	}
 	return (OK);
 }

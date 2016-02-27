@@ -11,9 +11,9 @@ t_parsing_msg	handle_link_line(char **line, t_map *map)
 		ft_freetab(split);
 		return (INVALID_LINE);
 	}
-	if (link_neighbour(map->rooms, split[0], split[1]) == -1)
+	if (link_neighbour(map, split[0], split[1]) == -1)
 		return (INVALID_LINE);
-	if (link_neighbour(map->rooms, split[1], split[0]) == -1)
+	if (link_neighbour(map, split[1], split[0]) == -1)
 		return (INVALID_LINE);
 	return (OK);
 }

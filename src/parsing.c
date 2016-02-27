@@ -9,6 +9,7 @@ t_map				parse_file(int fd)
 	t_parsing_msg	flag;
 
 	ft_bzero(&map, sizeof(map));
+	ft_list_init(&(map.rooms), NULL);
 	get_nb_ants(fd, &map);
 	while (get_next_line(fd, &line) == 1)
 	{
@@ -21,6 +22,7 @@ t_map				parse_file(int fd)
 		exit_error("no start room");
 	if (!map.end)
 		exit_error("no end room");
+	ft_list_init(&(map.end->neighbours), NULL);
 	return (map);
 }
 
@@ -131,8 +133,7 @@ int					add_room(t_map *map, t_room *room, int flag)
 		exit_error("2 start rooms");
 	if (flag == -1 && map->end)
 		exit_error("2 end rooms");
-	room->next = map->rooms;
-	map->rooms = room;
+	ft_list_add_back(&map->rooms, room, sizeof(t_room));
 	if (flag == 1)
 		map->start = room;
 	if (flag == -1)
