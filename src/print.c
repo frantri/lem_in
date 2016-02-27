@@ -1,13 +1,13 @@
 #include <lem_in.h>
 #include <ft_printf.h>
 
-static void	print_room_name(void *room, size_t s)
+void	print_room_name(void *room, size_t s)
 {
 	(void)s;
 	ft_printf("%s ", ((t_room *)room)->name);
 }
 
-static void	print_room(void *d, size_t s)
+void	print_room(void *d, size_t s)
 {
 	t_room		*room;
 

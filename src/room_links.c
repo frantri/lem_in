@@ -17,3 +17,19 @@ t_parsing_msg	handle_link_line(char **line, t_map *map)
 		return (INVALID_LINE);
 	return (OK);
 }
+
+int				room_id(void *data, size_t s, void *data2, size_t s2)
+{
+	(void)s;
+	(void)s2;
+	return (data == data2);
+}
+
+void			break_link(t_room *room, t_room *target)
+{
+	ft_printf("=====BREAKING %s<-->%s======\n", room->name, target->name);
+	print_room(room, 0);
+	ft_list_remove(&room->neighbours, target->name, 0, &room_cmp);
+	print_room(room, 0);
+	ft_printf("=====BROKE %s<-->%s======\n\n", room->name, target->name);
+}
