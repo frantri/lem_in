@@ -22,7 +22,6 @@ t_map				parse_file(int fd)
 		exit_error("no start room");
 	if (!map.end)
 		exit_error("no end room");
-	ft_list_init(&(map.end->neighbours), NULL);
 	return (map);
 }
 
