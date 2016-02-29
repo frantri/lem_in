@@ -3,8 +3,25 @@
 
 int			ft_room_cmp(void *d, size_t s, void *d2, size_t s2)
 {
-	s = s2;
+	(void)s;
+	(void)s2;
 	return (d - d2);
+}
+
+void	cut_links(t_room *room, t_map *map);
+void	cut(t_map *map)
+{
+	size_t	i;
+	t_room	*r;
+
+	i = 0;
+	while (i < map->rooms.size)
+	{
+		r = ft_list_get_at(&map->rooms, i);
+		if (r != map->start && r != map->end)
+			cut_links(r, map);
+		++i;
+	}
 }
 
 void		put_weights(t_map *map)
@@ -18,15 +35,15 @@ void		put_weights(t_map *map)
 	while (queue.size >= 1)
 	{
 		curr = ft_list_remove_back(&queue);
-		add_neighbours_to_queue(curr, &queue, map);
+		add_neighbours_to_queue(curr, &queue);
 	}
+	cut(map);
 }
 
-void		add_neighbours_to_queue(t_room *room, t_list *list, t_map *map)
+void		add_neighbours_to_queue(t_room *room, t_list *list)
 {
 	t_room	*it;
 	size_t	i;
-	(void)map;
 
 	i = 0;
 	while (i < room->neighbours.size)
@@ -37,11 +54,6 @@ void		add_neighbours_to_queue(t_room *room, t_list *list, t_map *map)
 			it->weight = room->weight + 1;
 			ft_list_add_front(list, it, sizeof(t_room));
 		}
-		//else if (it != map->end)
-		//{
-		//	break_link(room, it);
-		//	i--;
-		//}
 		++i;
 	}
 }

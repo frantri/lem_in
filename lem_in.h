@@ -22,6 +22,7 @@ typedef struct		s_room
 	int				c_x;
 	int				c_y;
 	int				weight;
+	int				used;
 }					t_room;
 
 typedef struct		s_line
@@ -70,8 +71,7 @@ void				reprint_map(t_map *map, t_line *l);
 void				print_map(t_map *map);
 
 void				put_weights(t_map *map);
-void				add_neighbours_to_queue(t_room *room,
-		t_list *list, t_map *map);
+void				add_neighbours_to_queue(t_room *room, t_list *list);
 void				break_link(t_room *room, t_room *target);
 
 
