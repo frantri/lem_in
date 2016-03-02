@@ -2,6 +2,8 @@
 # define LEM_IN_H
 # include <ft_list.h>
 # include <string.h>
+# include <ft_printf.h>
+# define DEBUG ft_printf("%s in %s at %d\n", __func__, __FILE__, __LINE__)
 
 typedef enum		e_parsing_msg
 {
@@ -18,6 +20,7 @@ typedef struct		s_room
 {
 	t_list			neighbours;
 	int				ant;
+	int				ants;
 	char			*name;
 	int				c_x;
 	int				c_y;
@@ -41,6 +44,8 @@ typedef struct		s_map
 }					t_map;
 
 
+void	play(t_map *map);
+void	make_move(t_room *room, t_map *map);
 
 t_parsing_msg		handle_special_line(int fd, char **line, t_map *map);
 int					add_room(t_map *map, t_room *room, int flag);
@@ -69,6 +74,13 @@ void	print_room_name(void *room, size_t s);
 void	print_room(void *d, size_t s);
 void				reprint_map(t_map *map, t_line *l);
 void				print_map(t_map *map);
+
+
+void	cut_end_links(t_map *map);
+void	cut_links(t_room *room, t_map *map);
+t_room	*get_best_ngh(t_room *room, t_map *map);
+
+int		check_map(t_map *map);
 
 void				put_weights(t_map *map);
 void				add_neighbours_to_queue(t_room *room, t_list *list);

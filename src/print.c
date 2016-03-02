@@ -13,7 +13,7 @@ void	print_room(void *d, size_t s)
 
 	room = (t_room *)d;
 	(void)s;
-	ft_printf("ROOM: %s {%d}, (%-3d,%-3d): ", room->name,room->weight, room->c_x, room->c_y);
+	ft_printf("ROOM: %s ants:%d , ant: %d {%d}, (%-3d,%-3d): ", room->name,room->ants, room->ant,  room->weight, room->c_x, room->c_y);
 	ft_list_iter(&room->neighbours, print_room_name);
 	ft_printf("\n");
 }

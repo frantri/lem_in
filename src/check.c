@@ -2,7 +2,6 @@
 #include <ft_printf.h>
 #include <libft.h>
 
-#include <stdio.h>
 t_parsing_msg	check_dbl(t_map *map, t_room *newroom)
 {
 	t_room		*room;
@@ -21,7 +20,7 @@ t_parsing_msg	check_dbl(t_map *map, t_room *newroom)
 	return (OK);
 }
 
-int		is_int(char *arg)
+int				is_int(char *arg)
 {
 	int			i;
 	intmax_t	v;
@@ -38,10 +37,12 @@ int		is_int(char *arg)
 	v = ft_atoi(arg);
 	if (v != (int)v)
 		return (0);
+	if (arg[0] == '-' && i == 1)
+		return (0);
 	return (1);
 }
 
-t_room		*is_valid_room(t_map *map, char *line)
+t_room			*is_valid_room(t_map *map, char *line)
 {
 	char			**split;
 	t_room			*new;
@@ -62,10 +63,20 @@ t_room		*is_valid_room(t_map *map, char *line)
 	if (msg == OK)
 		return (new);
 	if (msg == SAME_NAME)
-		exit_error("duplicate room name");
+		exit_error("");
 	if (msg == SAME_COORDS)
 	{
-		exit_error("duplicate room coords");
+		exit_error("");
 	}
 	return (NULL);
+}
+
+int				check_map(t_map *map)
+{
+	if (map->start->weight == -1)
+	{
+		exit_error("");
+		return (-1);
+	}
+	return (0);
 }

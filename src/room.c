@@ -12,6 +12,7 @@ t_room	*new_room(char *name, int x, int y)
 	res->c_y = y;
 	res->name = ft_strdup(name);
 	res->ant = 0;
+	res->ants = 0;
 	res->used = 0;
 	ft_list_init(&res->neighbours, NULL);
 	res->weight = -1;

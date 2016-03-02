@@ -8,8 +8,7 @@ int			ft_room_cmp(void *d, size_t s, void *d2, size_t s2)
 	return (d - d2);
 }
 
-void	cut_links(t_room *room, t_map *map);
-void	cut(t_map *map)
+void		cut(t_map *map)
 {
 	size_t	i;
 	t_room	*r;
@@ -38,6 +37,7 @@ void		put_weights(t_map *map)
 		add_neighbours_to_queue(curr, &queue);
 	}
 	cut(map);
+	map->start->ants = map->ants;
 }
 
 void		add_neighbours_to_queue(t_room *room, t_list *list)

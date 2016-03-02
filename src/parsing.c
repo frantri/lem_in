@@ -19,9 +19,9 @@ t_map				parse_file(int fd)
 			break ;
 	}
 	if (!map.start)
-		exit_error("no start room");
+		exit_error("");
 	if (!map.end)
-		exit_error("no end room");
+		exit_error("");
 	return (map);
 }
 
@@ -60,7 +60,7 @@ void				get_nb_ants(int fd, t_map *map)
 			break ;
 		}
 		else
-			exit_error("number of ants not provided");
+			exit_error("");
 	}
 }
 
@@ -129,9 +129,9 @@ t_parsing_msg		handle_special_line(int fd, char **line, t_map *map)
 int					add_room(t_map *map, t_room *room, int flag)
 {
 	if (flag == 1 && map->start)
-		exit_error("2 start rooms");
+		exit_error("");
 	if (flag == -1 && map->end)
-		exit_error("2 end rooms");
+		exit_error("");
 	ft_list_add_back(&map->rooms, room, sizeof(t_room));
 	if (flag == 1)
 		map->start = room;

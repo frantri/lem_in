@@ -10,6 +10,7 @@ t_room	*get_best_ngh(t_room *room, t_map *map)
 
 	i = 0;
 	min = INT_MAX;
+	r = NULL;
 	while (i < room->neighbours.size)
 	{
 		it = ft_list_get_at(&room->neighbours, i);
@@ -22,7 +23,8 @@ t_room	*get_best_ngh(t_room *room, t_map *map)
 		}
 		++i;
 	}
-	r->used = 1;
+	if (r)
+		r->used = 1;
 	return (r);
 }
 
@@ -44,4 +46,11 @@ void	cut_links(t_room *room, t_map *map)
 		}
 		i++;
 	}
+	cut_end_links(map);
+}
+
+void	cut_end_links(t_map *map)
+{
+	while (map->end->neighbours.size > 0)
+		ft_list_remove_front(&map->end->neighbours);
 }
