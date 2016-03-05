@@ -26,6 +26,9 @@ NAME = lem_in
 
 VIEW_NAME = viewer
 
+VIEW_SRC = ./visualizer/room.go ./visualizer/map.go ./visualizer/visualizer.go
+
+
 CC = gcc
 
 all: $(NAME) $(VIEW_NAME)
@@ -39,13 +42,13 @@ obj/%.o: src/%.c
 	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
 $(VIEW_NAME):
-	go build -o $(VIEW_NAME) visualizer
+	go build -o $(VIEW_NAME) $(VIEW_SRC)
 
 clean:
 	rm -rf obj
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(VIEW_NAME)
 
 re: fclean all
 
