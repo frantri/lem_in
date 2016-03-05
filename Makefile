@@ -42,14 +42,16 @@ obj/%.o: src/%.c
 	@mkdir -p obj
 	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
-$(VIEW_NAME):
+$(VIEW_NAME): $(VIEW_SRC)
 	go build -o $(VIEW_NAME) $(VIEW_SRC)
 
 clean:
 	rm -rf obj
+	make clean -C libft
 
 fclean: clean
 	rm -f $(NAME) $(VIEW_NAME)
+	make fclean -C libft
 
 re: fclean all
 
