@@ -6,7 +6,7 @@
 /*   By: ftriquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 20:31:43 by ftriquet          #+#    #+#             */
-/*   Updated: 2016/03/02 20:31:43 by ftriquet         ###   ########.fr       */
+/*   Updated: 2016/03/05 02:40:06 by ftriquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int		main(void)
 	check_map(&map);
 	reprint_map(&map, NULL);
 	write(1, "\n", 1);
+	clean_start(&map);
 	play(&map);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ftriquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 20:35:57 by ftriquet          #+#    #+#             */
-/*   Updated: 2016/03/02 20:35:58 by ftriquet         ###   ########.fr       */
+/*   Updated: 2016/03/05 02:38:58 by ftriquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct		s_room
 	int				c_y;
 	int				weight;
 	int				used;
+	int				visited;
 }					t_room;
 
 typedef struct		s_line
@@ -57,6 +58,9 @@ typedef struct		s_map
 
 void				play(t_map *map);
 void				make_move(t_room *room, t_map *map);
+void				clean_start(t_map *map);
+int					search_path(t_room *room, t_map *map);
+void				reset_visits(t_map *map);
 
 t_parsing_msg		handle_special_line(int fd, char **line, t_map *map);
 int					add_room(t_map *map, t_room *room, int flag);

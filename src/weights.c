@@ -6,7 +6,7 @@
 /*   By: ftriquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 20:31:48 by ftriquet          #+#    #+#             */
-/*   Updated: 2016/03/02 20:31:48 by ftriquet         ###   ########.fr       */
+/*   Updated: 2016/03/05 02:23:38 by ftriquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void		cut(t_map *map)
 	while (i < map->rooms.size)
 	{
 		r = ft_list_get_at(&map->rooms, i);
-		if (r != map->start && r != map->end)
+		if (r != map->end && r != map->start)
 			cut_links(r, map);
 		++i;
 	}

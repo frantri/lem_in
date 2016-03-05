@@ -6,7 +6,7 @@
 /*   By: ftriquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 20:31:45 by ftriquet          #+#    #+#             */
-/*   Updated: 2016/03/02 20:31:45 by ftriquet         ###   ########.fr       */
+/*   Updated: 2016/03/05 01:54:31 by ftriquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,15 @@ t_room	*get_best_ngh(t_room *room, t_map *map)
 
 void	cut_links(t_room *room, t_map *map)
 {
-	size_t	i;
+	int		i;
 	t_room	*best;
 	t_room	*tmp;
 
 	best = get_best_ngh(room, map);
 	i = 0;
-	while (i < room->neighbours.size)
+	while ((size_t)i < room->neighbours.size)
 	{
-		tmp = ft_list_get_at(&room->neighbours, i);
+		tmp = ft_list_get_at(&room->neighbours, (size_t)i);
 		if (tmp != best)
 		{
 			ft_list_remove(&room->neighbours, tmp, 0, &ft_room_cmp);

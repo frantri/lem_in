@@ -8,6 +8,7 @@ SRC_NAME = check.c \
 		   room.c \
 		   room_links.c \
 		   weights.c \
+		   clear_start.c \
 		   ants.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
@@ -16,7 +17,7 @@ SRC = $(addprefix src/, $(SRC_NAME))
 
 OBJ = $(addprefix obj/, $(OBJ_NAME))
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 
 LFLAGS = -lft -L libft
 

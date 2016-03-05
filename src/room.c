@@ -6,7 +6,7 @@
 /*   By: ftriquet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 20:31:46 by ftriquet          #+#    #+#             */
-/*   Updated: 2016/03/02 20:31:46 by ftriquet         ###   ########.fr       */
+/*   Updated: 2016/03/05 02:23:23 by ftriquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_room	*new_room(char *name, int x, int y)
 	res->used = 0;
 	ft_list_init(&res->neighbours, NULL);
 	res->weight = -1;
+	res->visited = 0;
 	return (res);
 }
 
