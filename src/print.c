@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ftriquet <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/03/02 20:31:46 by ftriquet          #+#    #+#             */
+/*   Updated: 2016/03/02 20:31:46 by ftriquet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <lem_in.h>
 #include <ft_printf.h>
 
@@ -13,7 +25,9 @@ void	print_room(void *d, size_t s)
 
 	room = (t_room *)d;
 	(void)s;
-	ft_printf("ROOM: %s ants:%d , ant: %d {%d}, (%-3d,%-3d): ", room->name,room->ants, room->ant,  room->weight, room->c_x, room->c_y);
+	ft_printf("ROOM: %s ants:%d , ant: %d {%d}, (%-3d,%-3d): ",
+			room->name, room->ants, room->ant,
+			room->weight, room->c_x, room->c_y);
 	ft_list_iter(&room->neighbours, print_room_name);
 	ft_printf("\n");
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lem_in.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ftriquet <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/03/02 20:35:57 by ftriquet          #+#    #+#             */
+/*   Updated: 2016/03/02 20:35:58 by ftriquet         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LEM_IN_H
 # define LEM_IN_H
 # include <ft_list.h>
@@ -43,9 +55,8 @@ typedef struct		s_map
 	t_line			*lines;
 }					t_map;
 
-
-void	play(t_map *map);
-void	make_move(t_room *room, t_map *map);
+void				play(t_map *map);
+void				make_move(t_room *room, t_map *map);
 
 t_parsing_msg		handle_special_line(int fd, char **line, t_map *map);
 int					add_room(t_map *map, t_room *room, int flag);
@@ -70,21 +81,19 @@ int					is_int(char *arg);
 t_parsing_msg		check_dbl(t_map *map, t_room *newroom);
 t_parsing_msg		exit_error(char *msg);
 
-void	print_room_name(void *room, size_t s);
-void	print_room(void *d, size_t s);
+void				print_room_name(void *room, size_t s);
+void				print_room(void *d, size_t s);
 void				reprint_map(t_map *map, t_line *l);
 void				print_map(t_map *map);
 
+void				cut_end_links(t_map *map);
+void				cut_links(t_room *room, t_map *map);
+t_room				*get_best_ngh(t_room *room, t_map *map);
 
-void	cut_end_links(t_map *map);
-void	cut_links(t_room *room, t_map *map);
-t_room	*get_best_ngh(t_room *room, t_map *map);
-
-int		check_map(t_map *map);
+int					check_map(t_map *map);
 
 void				put_weights(t_map *map);
 void				add_neighbours_to_queue(t_room *room, t_list *list);
 void				break_link(t_room *room, t_room *target);
-
 
 #endif
