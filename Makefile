@@ -24,9 +24,11 @@ IFLAGS = -I . -I libft/includes
 
 NAME = lem_in
 
+VIEW_NAME = viewer
+
 CC = gcc
 
-all: $(NAME)
+all: $(NAME) $(VIEW_NAME)
 
 $(NAME): $(OBJ)
 	make -C libft
@@ -35,6 +37,9 @@ $(NAME): $(OBJ)
 obj/%.o: src/%.c
 	@mkdir -p obj
 	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
+
+$(VIEW_NAME):
+	go build -o $(VIEW_NAME) visualizer
 
 clean:
 	rm -rf obj
